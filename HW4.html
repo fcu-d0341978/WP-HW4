@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+</head>
+<body>
+
+<h2>請選擇學院</h2>
+<select onchange = "change()" id = "col"></select>
+<h2>請選擇科系</h2>
+<select id = "deplist"></select>
+
+<p id = "demo"></p>
+<script>
+	var col = ["商學院", "資電學院", "工學院"];
+	var Businessdep = ["會計","國貿","財經"];
+	var Engineerdep = ["資訊","電機","自控"];
+	var industrydep = ["機械","航太","工工"];
+	var colEle = document.getElementById("col");
+	var deplistEle = document.getElementById("deplist");
+	
+	var option = "";
+	populateData(colEle,col);
+	populateData(deplistEle,Businessdep);
+	for(i = 0; i < col.length; i++){
+		option = option + '<option value = "'+ i +'">' + col[i]+'</option>';
+	}
+	
+	colEle.innerHTML = option;
+	
+	function change() {
+		var index = colEle.options[colEle.selectedIndex].value;
+		switch(index){
+			case "0":
+			populateData(deplistEle,Businessdep);
+			break;
+			case "1":
+			populateData(deplistEle,Engineerdep);
+			break;
+			case "2":
+			populateData(deplistEle,industrydep);
+			break;
+			default:
+			console.log("Not Accept");
+		}
+}
+
+	function populateData(selEle, data){
+		var option = "";
+		for(i = 0; i < data.length; i++){
+		option = option + '<option value = "'+ i +'">' + data[i]+'</option>';
+		selEle.innerHTML = option;
+	}
+}
+	
+</script>
+</body>
+</html>
